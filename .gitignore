@@ -1,0 +1,17 @@
+.idea
+/.vscode
+*.DS_Store
+/vendor
+.env
+.tags*
+.swp
+sftp-config*
+bs-config*
+.coding-ide/*
+nohup*
+*.log
+.wepycache
+.well-known
+node_modules/
+application/data/install/install.lock
+runtime/*.php
