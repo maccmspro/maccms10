@@ -20,7 +20,14 @@ class Index extends Base
             return $this->success($res['msg']);
         }
         Hook::listen("admin_login_init", $this->request);
-        return $this->fetch('admin@index/login');
+        // 验证码，兼容未配置伪静态模式
+        $verify_img_src = url('/verify/index');
+        if (stripos(Request()->root(), '.php') !== false) {
+            $verify_img_src = str_replace(basename(Request()->root()) . '/', 'index.php/', $verify_img_src);
+        }
+        return $this->fetch('admin@index/login', [
+            'verify_img_src' => $verify_img_src,
+        ]);
     }
 
     public function logout()
