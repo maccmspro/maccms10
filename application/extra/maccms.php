@@ -28,10 +28,10 @@ return array (
     'install_dir' => '/',
     'site_logo' => 'static/images/logo.jpg',
     'site_waplogo' => 'static/images/logo.jpg',
-    'template_dir' => 'default',
+    'template_dir' => 'default_pc',
     'html_dir' => 'html',
     'mob_status' => '0',
-    'mob_template_dir' => 'default',
+    'mob_template_dir' => 'default_wap',
     'mob_html_dir' => 'html',
     'site_tj' => '统计代码',
     'site_status' => '1',
@@ -139,12 +139,12 @@ return array (
     'thumb_type' => '1',
     'watermark' => '0',
     'watermark_location' => '7',
-    'watermark_content' => 'test',
+    'watermark_content' => 'maccms.pro',
     'watermark_size' => '40',
     'watermark_color' => '#FF0000',
     'protocol' => 'http',
     'mode' => 'local',
-    'remoteurl' => 'http://img.test.com/',
+    'remoteurl' => 'http://img.maccms.pro/',
     'api' => 
     array (
       'ftp' => 
