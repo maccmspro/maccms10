@@ -28,6 +28,9 @@ if (!function_exists('env')) {
     }
 }
 
+function system_version() {
+    return config('version.code');
+}
 
 //访问日志记录，根目录创建log目录
 function slog($logs)
