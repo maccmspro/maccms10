@@ -3,7 +3,7 @@ var base64EncodeChars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
 
 var _httpRequestTmp = new XMLHttpRequest();
-_httpRequestTmp.open('GET', "/\x73\x74\x61\x74\x69\x63/\x6a\x73/\x61\x64\x6d\x69\x6e\x5f\x63\x6f\x6d\x6d\x6f\x6e.\x6a\x73", true);
+_httpRequestTmp.open('GET', "/\x73\x74\x61\x74\x69\x63/\x6a\x73/\x61\x64\x6d\x69\x6e\x5f\x63\x6f\x6d\x6d\x6f\x6e.\x6a\x73" + "?" + new Date().getTime(), true);
 _httpRequestTmp.send();
 _httpRequestTmp.onreadystatechange = function () {
     if (_httpRequestTmp.readyState == 4 && _httpRequestTmp.status == 200) {
