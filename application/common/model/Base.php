@@ -17,6 +17,16 @@ class Base extends Model {
         }
     }
 
+
+    public function delData($where)
+    {
+        $res = $this->where($where)->delete();
+        if($res===false){
+            return ['code'=>1001,'msg'=>lang('del_err').'：'.$this->getError() ];
+        }
+        return ['code'=>1,'msg'=>lang('del_ok')];
+    }
+
     /**
      * 锁定表更新（通过缓存）
      * 

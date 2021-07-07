@@ -179,7 +179,7 @@ class Banner extends Base {
     }
 
     public function createTableIfNotExists() {
-        if ($this->lockTableUpdate(0) === true) {
+        if ($this->lockTableUpdate(1) === true) {
             return true;
         }
         if (!Db::execute("SHOW TABLES LIKE '". config('database.prefix') . $this->name ."'")) {
@@ -189,8 +189,8 @@ class Banner extends Base {
                 `banner_link` varchar(200) DEFAULT NULL,
                 `banner_cat` int(11) NOT NULL DEFAULT '0',
                 `banner_pic` varchar(200) DEFAULT NULL,
-                `banner_stime` int(11) DEFAULT NULL,
-                `banner_etime` int(11) DEFAULT NULL,
+                `banner_stime` bigint DEFAULT NULL,
+                `banner_etime` bigint DEFAULT NULL,
                 `banner_type` int(11) NOT NULL DEFAULT '0',
                 `banner_status` int(11) NOT NULL DEFAULT '0',
                 `banner_order` int(11) NOT NULL DEFAULT '0',
