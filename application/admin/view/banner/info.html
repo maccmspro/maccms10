@@ -18,8 +18,8 @@
                     <div class="layui-input-inline ">
                         <select name="banner_cat">
                             {volist name="cat" id="vo"}
-							<option value="{$vo.cat_id}" {if condition="$param['cat'] == $vo['cat_id']"}selected {/if}>{$vo.cat_title}</option>
-							{/volist}
+                            <option value="{$vo.cat_id}" {if condition="$param['cat'] == $vo['cat_id']"}selected {/if}>{$vo.cat_title}</option>
+                            {/volist}
                         </select>
                     </div>
                 </div>
@@ -48,11 +48,11 @@
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">开始时间：</label>
+                    <label class="layui-form-label">开始日期：</label>
                     <div class="layui-input-inline w200">
                         <input type="text" class="layui-input" value="{$info.banner_stime|date='Y-m-d',###}" placeholder="" name="banner_stime" id="stime">
                     </div>
-                    <label class="layui-form-label">结束时间：</label>
+                    <label class="layui-form-label">结束日期：</label>
                     <div class="layui-input-inline ">
                         <input type="text" class="layui-input" value="{$info.banner_etime|date='Y-m-d',###}" placeholder="" name="banner_etime" id="etime">
                     </div>
@@ -64,14 +64,14 @@
                         <input type="text" class="layui-input" value="{$info.banner_order}" placeholder="" name="banner_order">
                     </div>
                 </div>
-				
-				<div class="layui-form-item">
-					<label class="layui-form-label">广告状态：</label>
-					<div class="layui-input-block">
-						<input type="radio" name="banner_status" value="0" title="关闭" {if condition="$info['banner_status'] eq 0"}checked {/if}>
-						<input type="radio" name="banner_status" value="1" title="开启" {if condition="$info['banner_status'] eq 1"}checked {/if}>
-					</div>
-				</div>
+                
+                <div class="layui-form-item">
+                    <label class="layui-form-label">广告状态：</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="banner_status" value="0" title="关闭" {if condition="$info['banner_status'] eq 0"}checked {/if}>
+                        <input type="radio" name="banner_status" value="1" title="开启" {if condition="$info['banner_status'] eq 1"}checked {/if}>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -96,7 +96,7 @@
                 , layer = layui.layer
                 , $ = layui.jquery
                 , upload = layui.upload,
-				laydate = layui.laydate;
+                laydate = layui.laydate;
 
         // 验证
         form.verify({
@@ -139,7 +139,7 @@
             var left = e.clientX+document.body.scrollLeft+20;
             var top = e.clientY+document.body.scrollTop+20;
             $(".showpic").css({left:left,top:top,display:""});
-            if(imgsrc.indexOf('://')<0){ imgsrc = ROOT_PATH + '/' + imgsrc;	} else{ imgsrc = imgsrc.replace('mac:','http:'); }
+            if(imgsrc.indexOf('://')<0){ imgsrc = ROOT_PATH + '/' + imgsrc; } else{ imgsrc = imgsrc.replace('mac:','http:'); }
             $(".showpic_img").attr("src", imgsrc);
         },function (e){
             $(".showpic").css("display","none");
@@ -156,14 +156,14 @@
             $("#banner_score_all").val( rndNum(1000) );
             $("#banner_score_num").val( rndNum(100) );
         });
-		
-		laydate.render({
-			elem: '#stime'
-		});
-		
-		laydate.render({
-			elem: '#etime'
-		});
+        
+        laydate.render({
+            elem: '#stime'
+        });
+        
+        laydate.render({
+            elem: '#etime'
+        });
     });
 
 </script>

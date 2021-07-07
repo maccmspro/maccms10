@@ -21,7 +21,7 @@ class Banner extends Base
         }
         if(!empty($param['wd'])){
             $param['wd'] = urldecode($param['wd']);
-            $where['banner_name'] = ['like','%'.$param['wd'].'%'];
+            $where['banner_title'] = ['like','%'.$param['wd'].'%'];
         }
         if(!empty($param['cat'])){
             $where['banner_cat'] = ['eq',$param['cat']];
@@ -70,7 +70,14 @@ class Banner extends Base
         $cat = model('Banner_Cat')->listData(null,null);
         $this->assign('cat',$cat['list']);
 
-        $this->assign('info',$res['info']);
+        $info = $res['info'] ?: [];
+        if (empty($info)) {
+            // 添加时的初始值
+            $info['banner_stime'] = time();
+            $info['banner_etime'] = time() + 86400 * 365;
+            $info['banner_order'] = 0;
+        }
+        $this->assign('info',$info);
 
         $config = config('maccms.site');
         $this->assign('install_dir',$config['install_dir']);

@@ -6,7 +6,7 @@ class BannerCat extends Validate
 {
     protected $rule =   [
         'cat_title'  => 'require|max:30',
-        'cat_code' => 'require',
+        'cat_code' => 'require|max:20',
 
     ];
 

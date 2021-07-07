@@ -5,9 +5,9 @@ use think\Validate;
 class Banner extends Validate
 {
     protected $rule =   [
-        'banner_title'  => 'require|max:30',
-        'banner_link' => 'require',
-
+        'banner_title' => 'require|max:30',
+        'banner_link'  => 'require|max:200',
+        'banner_pic'   => 'max:200',
     ];
 
     protected $message  =   [

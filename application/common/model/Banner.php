@@ -94,7 +94,7 @@ class Banner extends Base {
     {
         $validate = \think\Loader::validate('Banner');
         if(!$validate->check($data)){
-            return ['code'=>1001,'msg'=>'参数1错误：'.$validate->getError() ];
+            return ['code'=>1001,'msg'=>'参数错误：'.$validate->getError() ];
         }
         $key = 'banner_detail_'.$data['banner_id'];
         Cache::rm($key);
@@ -112,6 +112,7 @@ class Banner extends Base {
         else{
             $data['banner_etime'] = strtotime(date('Y-m-d').' 23:59:59');
         }
+        $data['banner_order'] = (int)$data['banner_order'];
 
         if(!empty($data['banner_id'])){
             $where=[];
