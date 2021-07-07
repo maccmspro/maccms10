@@ -5,8 +5,9 @@ use think\Db;
 
 class Maccms extends Taglib {
 
-	protected $tags = [
-	    'link'=> ['attr'=>'order,by,type,not,start,num,cachetime'],
+    protected $tags = [
+	'link'=> ['attr'=>'order,by,type,not,start,num,cachetime'],
+	'banner'=> ['attr'=>'order,by,type,start,num,cachetime'],
         'area'=> ['attr'=>'order,start,num'],
         'lang'=> ['attr'=>'order,start,num'],
         'year'=> ['attr'=>'order,start,num'],
@@ -332,6 +333,40 @@ class Maccms extends Taglib {
 
         return $parse;
     }
+
+    public function tagBanner($tag,$content)
+    {
+        if(empty($tag['id'])){
+            $tag['id'] = 'vo';
+        }
+        if(empty($tag['key'])){
+            $tag['key'] = 'key';
+        }
+
+        $parse = '<?php ';
+        $parse .= '$__TAG__ = \'' . json_encode($tag) . '\';';
+        $parse .= '$__LIST__ = model("Banner")->listCacheData($__TAG__);';
+        $parse .= ' ?>';
+        $parse .= '{volist name="__LIST__[\'list\']" id="'.$tag['id'].'" key="'.$tag['key'].'"';
+        if(!empty($tag['offset'])){
+            $parse .= ' offset="'.$tag['offset'].'"';
+        }
+        if(!empty($tag['length'])){
+            $parse .= ' length="'.$tag['length'].'"';
+        }
+        if(!empty($tag['mod'])){
+            $parse .= ' mod="'.$tag['mod'].'"';
+        }
+        if(!empty($tag['empty'])){
+            $parse .= ' empty="'.$tag['empty'].'"';
+        }
+        $parse .= '}';
+        $parse .= $content;
+        $parse .= '{/volist}';
+
+        return $parse;
+    }
+
 
     public function tagType($tag,$content)
     {

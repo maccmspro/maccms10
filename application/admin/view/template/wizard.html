@@ -9,6 +9,7 @@
             <label class="layui-form-label">标签类别：</label>
             <div class="layui-input-block">
                 <input type="button" class="layui-btn layui-btn-primary" value="link({:lang('link')})" onclick="showex('link')"/>
+                <input type="button" class="layui-btn layui-btn-primary" value="banner(广告)" onclick="showex('banner')"/>
 
                 <input type="button" class="layui-btn layui-btn-primary" value="type({:lang('type')})" onclick="showex('type')"/>
                 <input type="button" class="layui-btn layui-btn-primary" value="topic({:lang('topic')})" onclick="showex('topic')"/>
@@ -41,7 +42,20 @@
             </div>
         </div>
 
-
+        <div class="layui-form-item vs v_banner" style="display: none;">
+            <label class="layui-form-label">{:lang('sort')}：</label>
+            <div class="layui-input-inline w100">
+                <select id="order_banner"><option value="desc">{:lang('admin/template/reverse_order')}</option><option value="asc">{:lang('admin/template/positive_order')}</option></select>
+            </div>
+            <label class="layui-form-label w50">排序：</label>
+            <div class="layui-input-inline w100">
+                <select id="by_banner"><option value="order">{:lang('sort')}</option><option value="id">{:lang('id')}</option></select>
+            </div>
+            <label class="layui-form-label w50">数据：</label>
+            <div class="layui-input-inline w100">
+                <select id="type_banner"><option value="all">全部广告</option><option value="top">自定义编码</option></select>
+            </div>
+        </div>
 
         <div class="layui-form-item vs v_tag" style="display: none;">
             <label class="layui-form-label">{:lang('sort')}：</label>
@@ -285,6 +299,10 @@
             case 'link':
                 p= ['order','by','type'];
                 c= [ ['key',"{:lang('serial_num')}"],['link_id',"{:lang('id')}"],['link_name',"{:lang('name')}"],['link_type',"{:lang('genre')}"],['link_logo',"{:lang('logo')}"],['link_url',"{:lang('url')}"] ];
+                break;
+            case 'banner':
+                p= ['order','by','type'];
+                c= [ ['key','序号'],['banner_id','编号'],['banner_title','名称'],['banner_pic','图片'],['banner_link','链接地址'] ];
                 break;
             case 'gbook':
                 p= ['order','by','num'];

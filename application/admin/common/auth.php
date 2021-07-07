@@ -80,6 +80,12 @@ return array(
         '3601' => array("show"=>0,'name' => '--附件删除', 'controller' => 'annex',		'action' => 'del'),
         '3602' => array("show"=>0,'name' => '--同步图片选项', 'controller' => 'images',		'action' => 'opt'),
         '3603' => array("show"=>0,'name' => '--同步图片方法', 'controller' => 'images',		'action' => 'sync'),
+	
+	'37' => array("show"=>1,'name' => '广告管理', 'controller' => 'banner',		'action' => 'index'),
+        '3701' => array("show"=>0,'name' => '--广告删除', 'controller' => 'banner',		'action' => 'del'),
+        '3702' => array("show"=>0,'name' => '--同步图片选项', 'controller' => 'banner',		'action' => 'opt'),
+        '3703' => array("show"=>0,'name' => '--同步图片方法', 'controller' => 'banner',		'action' => 'sync'),
+
     )),
 
     '5' => array('name' => lang('menu/art'), 'icon' => 'xe616', 'sub' => array(
