@@ -276,25 +276,25 @@
                     <div class="layui-form-mid layui-word-aux">{:lang('admin/system/config/search_timespan_tip')}</div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">搜索频次-分钟：</label>
+                    <label class="layui-form-label">搜索频次-分：</label>
                     <div class="layui-input-inline">
                         <input type="text" name="app[search_ip_limit_minute]" placeholder="" value="{$config['app']['search_ip_limit_minute']}" class="layui-input w150">
                     </div>
-                    <div class="layui-form-mid layui-word-aux">单IP每分钟最大搜索次数，可控制QPS</div>
+                    <div class="layui-form-mid layui-word-aux">单IP 每分钟最大搜索次数，可控制QPS</div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">搜索频次-小时：</label>
+                    <label class="layui-form-label">搜索频次-时：</label>
                     <div class="layui-input-inline">
                         <input type="text" name="app[search_ip_limit_hour]" placeholder="" value="{$config['app']['search_ip_limit_hour']}" class="layui-input w150">
                     </div>
-                    <div class="layui-form-mid layui-word-aux">单IP每小时最大搜索次数</div>
+                    <div class="layui-form-mid layui-word-aux">单IP 每小时最大搜索次数，一般为爬虫持续搜索</div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">搜索频次-天：</label>
                     <div class="layui-input-inline">
                         <input type="text" name="app[search_ip_limit_day]" placeholder="" value="{$config['app']['search_ip_limit_day']}" class="layui-input w150">
                     </div>
-                    <div class="layui-form-mid layui-word-aux">单IP 24小时最大搜索次数</div>
+                    <div class="layui-form-mid layui-word-aux">单IP 24小时最大搜索次数，服务器负载高时可设置小一些</div>
                 </div>
 
                 <div class="layui-form-item">
