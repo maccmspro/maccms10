@@ -275,6 +275,27 @@
                     </div>
                     <div class="layui-form-mid layui-word-aux">{:lang('admin/system/config/search_timespan_tip')}</div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">搜索频次-分钟：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="app[search_ip_limit_minute]" placeholder="" value="{$config['app']['search_ip_limit_minute']}" class="layui-input w150">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">单IP每分钟最大搜索次数，可控制QPS</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">搜索频次-小时：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="app[search_ip_limit_hour]" placeholder="" value="{$config['app']['search_ip_limit_hour']}" class="layui-input w150">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">单IP每小时最大搜索次数</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">搜索频次-天：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="app[search_ip_limit_day]" placeholder="" value="{$config['app']['search_ip_limit_day']}" class="layui-input w150">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">单IP 24小时最大搜索次数</div>
+                </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">{:lang('admin/system/config/search_vod_rule')}：</label>
@@ -558,7 +579,7 @@
             var left = e.clientX+document.body.scrollLeft+20;
             var top = e.clientY+document.body.scrollTop+20;
             $(".showpic").css({left:left,top:top,display:""});
-            if(imgsrc.indexOf('://')<0){ imgsrc = ROOT_PATH + '/' + imgsrc;	} else{ imgsrc = imgsrc.replace('mac:','http:'); }
+            if(imgsrc.indexOf('://')<0){ imgsrc = ROOT_PATH + '/' + imgsrc; } else{ imgsrc = imgsrc.replace('mac:','http:'); }
             $(".showpic_img").attr("src", imgsrc);
         },function (e){
             $(".showpic").css("display","none");

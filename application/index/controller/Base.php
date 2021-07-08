@@ -40,9 +40,9 @@ class Base extends All
 
         // 对IP增加频次限制
         $ip = request()->ip();
-        $minute_limit = 30;
-        $hour_limit   = 800;
-        $day_limit    = 10000;
+        $minute_limit = isset($GLOBALS['config']['app']['search_ip_limit_minute']) ? $GLOBALS['config']['app']['search_ip_limit_minute'] : 30;
+        $hour_limit   = isset($GLOBALS['config']['app']['search_ip_limit_hour']) ? $GLOBALS['config']['app']['search_ip_limit_hour'] : 800;
+        $day_limit    = isset($GLOBALS['config']['app']['search_ip_limit_day']) ? $GLOBALS['config']['app']['search_ip_limit_day'] : 10000;
         $cache_key = 'check_search:ip:v1:' . $ip;
         // 分钟
         if (!$this->check1MinuteFrequency($cache_key, $minute_limit)) {
