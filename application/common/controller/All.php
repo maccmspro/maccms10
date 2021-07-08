@@ -534,4 +534,67 @@ class All extends Controller
         $this->label_comment();
         return $info;
     }
+
+    protected function check1MinuteFrequency($key, $max_times) {
+        if (empty($key)) {
+            return true;
+        }
+        $cache_key_prefix = 'minute1_frequency:' . $key;
+        $count = (int)Cache::get($cache_key_prefix);
+        if ($count >= $max_times) {
+            return false;
+        }
+        return true;
+    }
+
+    protected function increase1MinuteFrequency($key) {
+        if (empty($key)) {
+            return;
+        }
+        $cache_key_prefix = 'minute1_frequency:' . $key;
+        $count = (int)Cache::get($cache_key_prefix);
+        Cache::set($cache_key_prefix, $count + 1, 60);
+    }
+
+    protected function check1HourFrequency($key, $max_times) {
+        if (empty($key)) {
+            return true;
+        }
+        $cache_key_prefix = 'hour1_frequency:' . $key;
+        $count = (int)Cache::get($cache_key_prefix);
+        if ($count >= $max_times) {
+            return false;
+        }
+        return true;
+    }
+
+    protected function increase1HourFrequency($key) {
+        if (empty($key)) {
+            return;
+        }
+        $cache_key_prefix = 'hour1_frequency:' . $key;
+        $count = (int)Cache::get($cache_key_prefix);
+        Cache::set($cache_key_prefix, $count + 1, 3600);
+    }
+
+    protected function check24HourFrequency($key, $max_times) {
+        if (empty($key)) {
+            return true;
+        }
+        $cache_key_prefix = 'hour24_frequency:' . $key;
+        $count = (int)Cache::get($cache_key_prefix);
+        if ($count >= $max_times) {
+            return false;
+        }
+        return true;
+    }
+
+    protected function increase24HourFrequency($key) {
+        if (empty($key)) {
+            return;
+        }
+        $cache_key_prefix = 'hour24_frequency:' . $key;
+        $count = (int)Cache::get($cache_key_prefix);
+        Cache::set($cache_key_prefix, $count + 1, 86400);
+    }
 }

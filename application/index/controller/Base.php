@@ -38,6 +38,30 @@ class Base extends All
             exit;
         }
 
+        // 对IP增加频次限制
+        $ip = request()->ip();
+        $minute_limit = 30;
+        $hour_limit   = 800;
+        $day_limit    = 10000;
+        $cache_key = 'check_search:ip:v1:' . $ip;
+        // 分钟
+        if (!$this->check1MinuteFrequency($cache_key, $minute_limit)) {
+            echo $this->error(lang('frequently') . '。可在1分钟后再试。');
+            exit;
+        }
+        $this->increase1MinuteFrequency($cache_key);
+        // 小时
+        if (!$this->check1HourFrequency($cache_key, $hour_limit)) {
+            echo $this->error(lang('frequently') . '。可在1小时后再试。');
+            exit;
+        }
+        $this->increase1HourFrequency($cache_key);
+        // 天
+        if (!$this->check24HourFrequency($cache_key, $day_limit)) {
+            echo $this->error(lang('frequently') . '。可在24小时后再试。');
+            exit;
+        }
+        $this->increase24HourFrequency($cache_key);
     }
 
     protected function check_site_status()
