@@ -1,0 +1,172 @@
+{include file="../../../application/admin/view/public/head" /}
+<script type="text/javascript" src="__STATIC__/js/jquery.jscolor.js"></script>
+
+<div class="page-container p10">
+
+    <div class="showpic" style="display:none;"><img class="showpic_img" width="120" height="160"></div>
+
+    <form class="layui-form layui-form-pane" method="post" action="">
+        <input type="hidden" name="banner_id" value="{$info.banner_id}">
+
+        <div class="layui-tab">
+        <div class="layui-tab-content">
+
+            <div class="layui-tab-item layui-show">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">显示位置：</label>
+                    <div class="layui-input-inline ">
+                        <select name="banner_cat">
+                            {volist name="cat" id="vo"}
+                            <option value="{$vo.cat_id}" {if condition="$param['cat'] == $vo['cat_id']"}selected {/if}>{$vo.cat_title}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称：</label>
+                    <div class="layui-input-inline w500">
+                        <input type="text" class="layui-input" lay-verify="banner_title" value="{$info.banner_title}" placeholder="" name="banner_title">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">链接：</label>
+                    <div class="layui-input-inline w500">
+                        <input type="text" class="layui-input" lay-verify="banner_link" value="{$info.banner_link}" placeholder="" name="banner_link">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">图片：</label>
+                    <div class="layui-input-inline w500 upload">
+                        <input type="text" class="layui-input upload-input" style="max-width:100%;" value="{$info.banner_pic}" placeholder="" id="banner_pic" name="banner_pic">
+                    </div>
+                    <div class="layui-input-inline ">
+                        <button type="button" class="layui-btn layui-upload" lay-data="{data:{thumb:1,thumb_class:'upload-thumb'}}" id="upload1">上传图片</button>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">开始日期：</label>
+                    <div class="layui-input-inline w200">
+                        <input type="text" class="layui-input" value="{$info.banner_stime|date='Y-m-d',###}" placeholder="" name="banner_stime" id="stime">
+                    </div>
+                    <label class="layui-form-label">结束日期：</label>
+                    <div class="layui-input-inline ">
+                        <input type="text" class="layui-input" value="{$info.banner_etime|date='Y-m-d',###}" placeholder="" name="banner_etime" id="etime">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">显示顺序：</label>
+                    <div class="layui-input-inline w500">
+                        <input type="text" class="layui-input" value="{$info.banner_order}" placeholder="" name="banner_order">
+                    </div>
+                </div>
+                
+                <div class="layui-form-item">
+                    <label class="layui-form-label">广告状态：</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="banner_status" value="0" title="关闭" {if condition="$info['banner_status'] eq 0"}checked {/if}>
+                        <input type="radio" name="banner_status" value="1" title="开启" {if condition="$info['banner_status'] eq 1"}checked {/if}>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+        <div class="layui-form-item center">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit" data-child="">保 存</button>
+                <button class="layui-btn layui-btn-warm" type="reset">还 原</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+
+
+<script type="text/javascript">
+
+    layui.use(['form','upload', 'layer','laydate'], function () {
+        // 操作对象
+        var form = layui.form
+                , layer = layui.layer
+                , $ = layui.jquery
+                , upload = layui.upload,
+                laydate = layui.laydate;
+
+        // 验证
+        form.verify({
+            banner_name: function (value) {
+                if (value == "") {
+                    return "请输入广告名称";
+                }
+            }
+        });
+
+        upload.render({
+            elem: '.layui-upload'
+            ,url: "{:url('upload/upload')}?flag=banner"
+            ,method: 'post'
+            ,before: function(input) {
+                layer.msg('文件上传中...', {time:3000000});
+            },done: function(res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                }
+                layer.closeAll();
+                var input = $(obj).parent().parent().find('.upload-input');
+                if ($(obj).attr('lay-type') == 'image') {
+                    input.siblings('img').attr('src', res.data.file).show();
+                }
+                input.val(res.data.file);
+
+                if(res.data.thumb_class !=''){
+                    $('.'+ res.data.thumb_class).val(res.data.thumb[0].file);
+                }
+            }
+        });
+
+        $('.upload-input').hover(function (e){
+            var e = window.event || e;
+            var imgsrc = $(this).val();
+            if(imgsrc.trim()==""){ return; }
+            var left = e.clientX+document.body.scrollLeft+20;
+            var top = e.clientY+document.body.scrollTop+20;
+            $(".showpic").css({left:left,top:top,display:""});
+            if(imgsrc.indexOf('://')<0){ imgsrc = ROOT_PATH + '/' + imgsrc; } else{ imgsrc = imgsrc.replace('mac:','http:'); }
+            $(".showpic_img").attr("src", imgsrc);
+        },function (e){
+            $(".showpic").css("display","none");
+        });
+
+        $("#btn_rnd").click(function(){
+            $("#banner_hits").val( rndNum(5000,9999) );
+            $("#banner_hits_month").val( rndNum(1000,4999) );
+            $("#banner_hits_week").val( rndNum(300,999) );
+            $("#banner_hits_day").val( rndNum(1,299) );
+            $("#banner_up").val( rndNum(1,999) );
+            $("#banner_down").val( rndNum(1,999) );
+            $("#banner_score").val( rndNum(10) );
+            $("#banner_score_all").val( rndNum(1000) );
+            $("#banner_score_num").val( rndNum(100) );
+        });
+        
+        laydate.render({
+            elem: '#stime'
+        });
+        
+        laydate.render({
+            elem: '#etime'
+        });
+    });
+
+</script>
+
+</body>
+</html>

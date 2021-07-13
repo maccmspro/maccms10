@@ -1,0 +1,76 @@
+{include file="../../../application/admin/view/public/head" /}
+<script type="text/javascript" src="__STATIC__/js/jquery.jscolor.js"></script>
+
+<div class="page-container p10">
+
+    <form class="layui-form layui-form-pane" method="post" action="">
+        <input type="hidden" name="cat_id" value="{$info.cat_id}">
+
+        <div class="layui-tab">
+        <div class="layui-tab-content">
+
+            <div class="layui-tab-item layui-show">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称：</label>
+                    <div class="layui-input-inline w500">
+                        <input type="text" class="layui-input" lay-verify="cat_title" value="{$info.cat_title}" placeholder="" name="cat_title">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">英文编码：</label>
+                    <div class="layui-input-inline w500">
+                        <input type="text" class="layui-input" lay-verify="cat_code" value="{$info.cat_code}" placeholder="" name="cat_code">
+                    </div>
+                </div>
+				
+				<!-- <div class="layui-form-item">
+					<label class="layui-form-label">广告类型：</label>
+					<div class="layui-input-block">
+						<input type="radio" name="cat_type" value="0" title="展示广告">
+						<input type="radio" name="cat_type" value="1" title="对联广告">
+					</div>
+				</div> -->
+            </div>
+
+        </div>
+        </div>
+        <div class="layui-form-item center">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit" data-child="">保 存</button>
+                <button class="layui-btn layui-btn-warm" type="reset">还 原</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+
+
+<script type="text/javascript">
+
+    layui.use(['form', 'layer'], function () {
+        // 操作对象
+        var form = layui.form
+                , layer = layui.layer
+                , $ = layui.jquery;
+
+        // 验证
+        form.verify({
+            cat_title: function (value) {
+                if (value == "") {
+                    return "请输入名称";
+                }
+            },
+            cat_code: function (value) {
+                if (value == "") {
+                    return "请输入英文编码";
+                }
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>
