@@ -68,7 +68,7 @@ class System extends Base
             }
             unset($config['__token__']);
 
-
+            $config['site']['site_email'] = htmlspecialchars($config['site']['site_email']);
             $ads_dir='ads';
             $mob_ads_dir='ads';
             $path = ROOT_PATH .'template/'.$config['site']['template_dir'].'/info.ini';
