@@ -290,7 +290,11 @@ class Actor extends Base {
         }
         if($by=='rnd'){
             $data_count = $this->countData($where);
-            $page_total = floor($data_count / $lp['num']) + 1;
+            if ($data_count == $lp['num'] || $data_count == 0) {
+                $page_total = 1;
+            }else{
+                $page_total = floor($data_count / $lp['num']) + 1;
+            }
             if($data_count < $lp['num']){
                 $lp['num'] = $data_count;
             }
