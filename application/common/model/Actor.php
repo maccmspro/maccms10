@@ -288,10 +288,14 @@ class Actor extends Base {
         if(!empty($wd)) {
             $where['actor_name|actor_en'] = ['like', '%' . $wd . '%'];
         }
-        if($by=='rnd'){
+        if ($by == 'rnd') {
             $data_count = $this->countData($where);
-            $page_total = floor($data_count / $lp['num']) + 1;
-            if($data_count < $lp['num']){
+            if ($data_count == $lp['num'] || $data_count == 0) {
+                $page_total = 1;
+            } else {
+                $page_total = floor($data_count / $lp['num']) + 1;
+            }
+            if ($data_count < $lp['num']) {
                 $lp['num'] = $data_count;
             }
             $randi = @mt_rand(1, $page_total);
