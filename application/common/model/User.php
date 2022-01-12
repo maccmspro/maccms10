@@ -124,6 +124,7 @@ class User extends Base
         $data['user_pwd2'] = htmlspecialchars(urldecode(trim($param['user_pwd2'])));
         $data['verify'] = $param['verify'];
         $uid = $param['uid'];
+        $is_from_3rdparty = !empty($param['user_openid_qq']) || !empty($param['user_openid_weixin']);
 
 
         if ($config['user']['status'] == 0 || $config['user']['reg_open'] == 0) {
@@ -132,8 +133,7 @@ class User extends Base
         if (empty($data['user_name']) || empty($data['user_pwd']) || empty($data['user_pwd2'])) {
             return ['code' => 1002, 'msg' => lang('model/user/input_require')];
         }
-        if (empty($param['user_openid_qq']) && empty($param['user_openid_weixin'])
-            && !captcha_check($data['verify']) &&  $config['user']['reg_verify']==1) {
+        if (!$is_from_3rdparty && !captcha_check($data['verify']) && $config['user']['reg_verify'] == 1) {
             return ['code' => 1003, 'msg' => lang('verify_err')];
         }
         if ($data['user_pwd'] != $data['user_pwd2']) {
@@ -349,6 +349,9 @@ class User extends Base
         } else {
             if (empty($data['openid']) || empty($data['col'])) {
                 return ['code' => 1001, 'msg' => lang('model/user/input_require')];
+            }
+            if (!in_array($data['col'], ['user_openid_qq', 'user_openid_weixin'])) {
+                return ['code' => 1002, 'msg' => lang('param_err') . ': col'];
             }
             $where[$data['col']] = $data['openid'];
         }
