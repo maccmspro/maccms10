@@ -667,7 +667,7 @@ function mac_array2xml($arr,$level=1)
         if(!is_array($value)) {
             $s .= "<{$tagname}>".(!is_numeric($value) ? '<![CDATA[' : '').$value.(!is_numeric($value) ? ']]>' : '')."</{$tagname}>";
         } else {
-            $s .= "<{$tagname}>" . $this->array2xml($value, $level + 1)."</{$tagname}>";
+            $s .= "<{$tagname}>" . mac_array2xml($value, $level + 1)."</{$tagname}>";
         }
     }
     $s = preg_replace("/([\x01-\x08\x0b-\x0c\x0e-\x1f])+/", ' ', $s);
@@ -778,11 +778,11 @@ function mac_parse_sql($sql='',$limit=0,$prefix=[])
 
         // 只返回一条语句
         if ($limit == 1) {
-            return implode($pure_sql, "");
+            return join("", $pure_sql);
         }
 
         // 以数组形式返回sql语句
-        $pure_sql = implode($pure_sql, "\n");
+        $pure_sql = join("\n", $pure_sql);
         $pure_sql = explode(";\n", $pure_sql);
         return $pure_sql;
     } else {
