@@ -22,9 +22,9 @@ class VodServer extends Base
 
     public function info()
     {
-        $param = input();
         $list = config($this->_pre);
         if (Request()->isPost()) {
+            $param = input('post.');
             $validate = \think\Loader::validate('Token');
             if(!$validate->check($param)){
                 return $this->error($validate->getError());
@@ -52,6 +52,7 @@ class VodServer extends Base
             return $this->success(lang('save_ok'));
         }
 
+        $param = input();
         $info = $list[$param['id']];
         $this->assign('info',$info);
         $this->assign('title',lang('admin/vodserver/title'));

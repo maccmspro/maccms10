@@ -43,7 +43,7 @@ return [
     // 是否开启多语言
     'lang_switch_on'         => false,
     // 默认全局过滤方法 用逗号分隔多个
-    'default_filter'         => '',
+    'default_filter'         => 'htmlspecialchars',
     // 默认语言
     'default_lang'           => 'zh-cn',
     // 应用类库后缀
@@ -58,7 +58,7 @@ return [
     // 默认模块名
     'default_module'         => 'index',
     // 禁止访问模块
-    'deny_module_list'       => ['common','data'],
+    'deny_module_list'       => ['common', 'data'],
     // 默认控制器名
     'default_controller'     => 'Index',
     // 默认操作名
@@ -121,52 +121,52 @@ return [
     // | 模板设置
     // +----------------------------------------------------------------------
 
-    'template'               => [
+    'template'              => [
         // 模板引擎类型 支持 php think 支持扩展
-        'type'         => 'Think',
+        'type'            => 'Think',
         // 模板路径
-        'view_path'    => './template/',
+        'view_path'       => './template/',
         // 模板后缀
-        'view_suffix'  => 'html',
+        'view_suffix'     => 'html',
         // 模板文件名分隔符
-        'view_depr'    => DS,
+        'view_depr'       => DS,
         // 模板引擎普通标签开始标记
-        'tpl_begin'    => '{',
+        'tpl_begin'       => '{',
         // 模板引擎普通标签结束标记
-        'tpl_end'      => '}',
+        'tpl_end'         => '}',
         // 标签库标签开始标记
-        'taglib_begin' => '{',
+        'taglib_begin'    => '{',
         // 标签库标签结束标记
-        'taglib_end'   => '}',
+        'taglib_end'      => '}',
         // 预先加载的标签库
-        'taglib_pre_load'     =>    'app\common\taglib\Maccms',
+        'taglib_pre_load' => 'app\common\taglib\Maccms',
     ],
 
     // 视图输出字符串内容替换
-    'view_replace_str'       => [],
+    'view_replace_str'      => [],
     // 默认跳转页面对应的模板文件
-    'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
-    'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    'dispatch_success_tmpl' => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    'dispatch_error_tmpl'   => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
 
     // +----------------------------------------------------------------------
     // | 异常及错误设置
     // +----------------------------------------------------------------------
 
     // 异常页面的模板文件
-    'exception_tmpl'         => THINK_PATH . 'tpl' . DS . 'think_exception.tpl',
+    'exception_tmpl'        => THINK_PATH . 'tpl' . DS . 'think_exception.tpl',
 
     // 错误显示信息,非调试模式有效
-    'error_message'          => '页面错误！请稍后再试～',
+    'error_message'         => '页面错误！请稍后再试～',
     // 显示错误信息
-    'show_error_msg'         => true,
+    'show_error_msg'        => true,
     // 异常处理handle类 留空使用 \think\exception\Handle
-    'exception_handle'       => '',
+    'exception_handle'      => '',
 
     // +----------------------------------------------------------------------
     // | 日志设置
     // +----------------------------------------------------------------------
 
-    'log'                    => [
+    'log'   => [
         // 日志记录方式，内置 file socket test 支持扩展
         'type'  => 'test',
         // 日志保存目录
@@ -178,7 +178,7 @@ return [
     // +----------------------------------------------------------------------
     // | Trace设置 开启 app_trace 后 有效
     // +----------------------------------------------------------------------
-    'trace'                  => [
+    'trace' => [
         // 内置Html Console 支持扩展
         'type' => 'Html',
     ],
@@ -187,7 +187,7 @@ return [
     // | 缓存设置
     // +----------------------------------------------------------------------
 
-    'cache'                  => [
+    'cache' => [
         // 驱动方式
         'type'   => 'File',
         // 缓存保存目录
@@ -202,7 +202,7 @@ return [
     // | 会话设置
     // +----------------------------------------------------------------------
 
-    'session'                => [
+    'session'  => [
         'id'             => '',
         // SESSION_ID的提交变量,解决flash上传跨域
         'var_session_id' => '',
@@ -217,7 +217,7 @@ return [
     // +----------------------------------------------------------------------
     // | Cookie设置
     // +----------------------------------------------------------------------
-    'cookie'                 => [
+    'cookie'   => [
         // cookie 名称前缀
         'prefix'    => '',
         // cookie 保存时间
@@ -235,7 +235,7 @@ return [
     ],
 
     //分页配置
-    'paginate'               => [
+    'paginate' => [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 20,
